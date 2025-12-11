@@ -31,7 +31,7 @@ const TodoListContainer: React.FC = () => {
     return <MessageBar>No todos found.</MessageBar>;
   }
 
-  return <TodoList items={data} />;
+  return <TodoList items={data} searchValue={searchStore.debouncedSearchValue} />;
 };
 
 export default observer(TodoListContainer);
