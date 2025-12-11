@@ -46,7 +46,7 @@ export class SearchStore {
   }
 
   updateDebouncedValue(value: string) {
-    this.debouncedSearchValue = value;
+    this.debouncedSearchValue = value.trim();
   }
 
   clearSearch() {

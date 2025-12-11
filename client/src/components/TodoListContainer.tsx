@@ -15,7 +15,6 @@ const TodoListContainer: React.FC = () => {
     queryKey: ["todos", "all", searchStore.debouncedSearchValue],
     queryFn: (context) =>
       todoService.getAll(context, { filter: searchStore.debouncedSearchValue }),
-    initialData: [],
   });
 
   if (error) {
@@ -28,7 +27,11 @@ const TodoListContainer: React.FC = () => {
     return <LoadingShimmer />;
   }
 
-  return <TodoList items={data ?? []} />;
+  if (!data || data?.length === 0) {
+    return <MessageBar>No todos found.</MessageBar>;
+  }
+
+  return <TodoList items={data} />;
 };
 
 export default observer(TodoListContainer);
