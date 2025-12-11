@@ -1,11 +1,17 @@
-import { action, makeObservable, observable, reaction, IReactionDisposer } from "mobx";
+import {
+  action,
+  makeObservable,
+  observable,
+  reaction,
+  IReactionDisposer,
+} from "mobx";
 
 export class SearchStore {
   searchValue: string = "";
   debouncedSearchValue: string = "";
 
   private debounceTimer: ReturnType<typeof setTimeout> | null = null;
-  private reactionDisposer: IReactionDisposer | null = null;
+  private reactionDisposers: IReactionDisposer[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -15,19 +21,23 @@ export class SearchStore {
       clearSearch: action,
       updateDebouncedValue: action,
     });
+  }
 
+  private initReaction() {
     // Setup reaction to debounce searchValue changes
-    this.reactionDisposer = reaction(
-      () => this.searchValue,
-      (value) => {
-        if (this.debounceTimer) {
-          clearTimeout(this.debounceTimer);
-        }
+    this.reactionDisposers.push(
+      reaction(
+        () => this.searchValue,
+        (value) => {
+          if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+          }
 
-        this.debounceTimer = setTimeout(() => {
-          this.updateDebouncedValue(value);
-        }, 300);
-      }
+          this.debounceTimer = setTimeout(() => {
+            this.updateDebouncedValue(value);
+          }, 300);
+        }
+      )
     );
   }
 
@@ -47,11 +57,15 @@ export class SearchStore {
     }
   }
 
+  init() {
+    this.initReaction();
+  }
+
   dispose() {
     // Clean up the reaction
-    if (this.reactionDisposer) {
-      this.reactionDisposer();
-      this.reactionDisposer = null;
+    if (this.reactionDisposers.length) {
+      this.reactionDisposers.forEach((disposer) => disposer());
+      this.reactionDisposers = [];
     }
 
     // Clear any pending timeout

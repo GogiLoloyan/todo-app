@@ -23,10 +23,8 @@ export const SearchStoreProvider: React.FC<SearchStoreProviderProps> = ({
 }) => {
   const [value] = useState(() => store ?? new SearchStore());
 
-  /**
-   * Cleanup the store when the provider unmounts
-   */
   useEffect(() => {
+    value.init();
     return () => {
       value.dispose();
     };
