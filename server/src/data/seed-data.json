@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Complete project documentation", "isComplete": false },
+  { "id": 2, "name": "Review pull requests", "isComplete": true },
+  { "id": 3, "name": "Setup CI/CD pipeline", "isComplete": false },
+  { "id": 4, "name": "Write unit tests", "isComplete": false },
+  { "id": 5, "name": "Update dependencies", "isComplete": true },
+  { "id": 6, "name": "Fix navigation bug", "isComplete": true },
+  { "id": 7, "name": "Implement search feature", "isComplete": false },
+  { "id": 8, "name": "Design database schema", "isComplete": true },
+  { "id": 9, "name": "Create API endpoints", "isComplete": false },
+  { "id": 10, "name": "Deploy to staging", "isComplete": false },
+  { "id": 11, "name": "Performance optimization", "isComplete": false },
+  { "id": 12, "name": "Security audit", "isComplete": true }
+]
