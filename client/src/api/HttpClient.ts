@@ -9,8 +9,10 @@ export class HttpClient {
 
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined) {
+        if (value !== undefined && value !== null && value !== "") {
           url.searchParams.set(key, String(value));
+        } else {
+          url.searchParams.delete(key);
         }
       });
     }
