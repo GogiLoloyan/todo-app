@@ -1,7 +1,7 @@
 import { DetailsList, IColumn, SelectionMode, Icon } from "@fluentui/react";
 import type { TodoItem } from "@shared/types";
 
-import HighlightText from "../utils/highlightText";
+import { HighlightText } from "../utils/highlightText";
 
 interface TodoListProps {
   items: TodoItem[];

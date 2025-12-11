@@ -5,7 +5,10 @@ interface HighlightTextProps {
   highlight: string;
 }
 
-const HighlightText: React.FC<HighlightTextProps> = ({ text, highlight }) => {
+export const HighlightText: React.FC<HighlightTextProps> = ({
+  text,
+  highlight,
+}) => {
   if (!highlight.trim()) {
     return <>{text}</>;
   }
@@ -33,5 +36,3 @@ const HighlightText: React.FC<HighlightTextProps> = ({ text, highlight }) => {
     </>
   );
 };
-
-export default HighlightText;
