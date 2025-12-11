@@ -1,13 +1,16 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { initializeIcons } from '@fluentui/react';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { initializeIcons } from "@fluentui/react";
 
-import App from './App';
+import { SearchStoreProvider } from "./stores/SearchStoreContext";
+import App from "./App";
 
 initializeIcons();
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <SearchStoreProvider>
+      <App />
+    </SearchStoreProvider>
   </StrictMode>
 );

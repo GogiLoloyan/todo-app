@@ -1,19 +1,18 @@
+import { observer } from "mobx-react-lite";
 import { SearchBox } from "@fluentui/react";
 
-interface TodoSearchBoxProps {
-  value: string;
-  onChange: (value: string) => void;
-}
+import { useSearchStore } from "../stores/SearchStoreContext";
 
-export const TodoSearchBox: React.FC<TodoSearchBoxProps> = ({
-  value,
-  onChange,
-}) => {
+const TodoSearchBox: React.FC = () => {
+  const searchStore = useSearchStore();
+
   return (
     <SearchBox
       placeholder="Filter by name..."
-      value={value}
-      onChange={(_, newValue) => onChange(newValue ?? "")}
+      value={searchStore.searchValue}
+      onChange={(_, newValue) => searchStore.setSearchValue(newValue ?? "")}
     />
   );
 };
+
+export default observer(TodoSearchBox);
