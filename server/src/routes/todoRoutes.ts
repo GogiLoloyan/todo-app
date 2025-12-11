@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 
-import { TodoItem } from "@shared/types";
+import { TodoItem, TodoItemsQueryParams } from "@shared/types";
 
 import seedData from "../data/seed-data.json";
 
@@ -8,7 +8,7 @@ const router = Router();
 
 const todoItems: TodoItem[] = seedData;
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/", (req: Request<unknown, unknown, unknown, TodoItemsQueryParams>, res: Response) => {
   const { filter } = req.query;
 
   if (typeof filter === "string" && filter.trim()) {
