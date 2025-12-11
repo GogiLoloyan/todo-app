@@ -14,6 +14,11 @@ export class SearchStore {
   private reactionDisposers: IReactionDisposer[] = [];
 
   constructor() {
+    const initial = this.getSearchFromURL();
+
+    this.searchValue = initial;
+    this.debouncedSearchValue = initial;
+
     makeObservable(this, {
       searchValue: observable,
       debouncedSearchValue: observable,
@@ -21,6 +26,24 @@ export class SearchStore {
       clearSearch: action,
       updateDebouncedValue: action,
     });
+
+    this.initReaction();
+  }
+
+  private updateURL(value: string) {
+    const params = new URLSearchParams(window.location.search);
+
+    if (value) {
+      params.set("search", value);
+    } else {
+      params.delete("search");
+    }
+
+    const newURL = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+
+    window.history.replaceState({}, "", newURL);
   }
 
   private initReaction() {
@@ -32,7 +55,6 @@ export class SearchStore {
           if (this.debounceTimer) {
             clearTimeout(this.debounceTimer);
           }
-
           this.debounceTimer = setTimeout(() => {
             this.updateDebouncedValue(value);
           }, 300);
@@ -47,6 +69,7 @@ export class SearchStore {
 
   updateDebouncedValue(value: string) {
     this.debouncedSearchValue = value.trim();
+    this.updateURL(this.debouncedSearchValue);
   }
 
   clearSearch() {
@@ -55,6 +78,11 @@ export class SearchStore {
     if (this.debounceTimer) {
       clearTimeout(this.debounceTimer);
     }
+  }
+
+  private getSearchFromURL(): string {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("search") || "";
   }
 
   init() {
