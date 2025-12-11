@@ -10,6 +10,7 @@ const TodoSearchBox: React.FC = () => {
     <SearchBox
       placeholder="Filter by name..."
       value={searchStore.searchValue}
+      onClear={() => searchStore.setSearchValue("")}
       onChange={(_, newValue) => searchStore.setSearchValue(newValue ?? "")}
     />
   );
