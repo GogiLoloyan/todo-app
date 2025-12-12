@@ -1,5 +1,8 @@
 import { useMemo } from "react";
-import { DetailsList, IColumn, SelectionMode, Icon } from "@fluentui/react";
+import { Icon } from "@fluentui/react/lib/Icon";
+import type { IColumn } from "@fluentui/react/lib/DetailsList";
+import { DetailsList, SelectionMode } from "@fluentui/react/lib/DetailsList";
+
 import type { TodoItem } from "@shared/types";
 
 import { HighlightText } from "../utils/highlightText";

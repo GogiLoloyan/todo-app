@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { SearchBox } from "@fluentui/react";
+import { SearchBox } from "@fluentui/react/lib/SearchBox";
 
 import { useSearchStore } from "../stores/SearchStoreContext";
 

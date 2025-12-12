@@ -1,10 +1,8 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import {
-  MessageBar,
-  MessageBarType,
-  DefaultButton,
-  Stack,
-} from "@fluentui/react";
+
+import { MessageBar, MessageBarType } from "@fluentui/react/lib/MessageBar";
+import { DefaultButton } from "@fluentui/react/lib/Button";
+import { Stack } from "@fluentui/react/lib/Stack";
 
 interface ErrorBoundaryProps {
   children: ReactNode;

@@ -1,4 +1,4 @@
-import { Shimmer, ShimmerElementType } from "@fluentui/react";
+import { Shimmer, ShimmerElementType } from "@fluentui/react/lib/Shimmer";
 
 const shimmerElements = [
   { type: ShimmerElementType.line, width: "30%", height: 16 },

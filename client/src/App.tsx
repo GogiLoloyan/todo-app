@@ -1,4 +1,5 @@
-import { Stack, Text } from "@fluentui/react";
+import { Text } from "@fluentui/react/lib/Text";
+import { Stack } from "@fluentui/react/lib/Stack";
 
 import ErrorBoundary from "./components/ErrorBoundary";
 import TodoSearchBox from "./components/TodoSearchBox";

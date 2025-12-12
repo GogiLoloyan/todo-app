@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { MessageBar, MessageBarType } from "@fluentui/react";
+import { MessageBar, MessageBarType } from "@fluentui/react/lib/MessageBar";
 
 import TodoList from "./TodoList";
 import LoadingShimmer from "./LoadingShimmer";
