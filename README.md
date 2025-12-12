@@ -8,7 +8,8 @@ A full-stack Todo application built with React, MobX, and Express. Features incl
 - **URL State Sync** — Search state persists in URL, enabling shareable links and browser navigation
 - **Request Cancellation** — Automatic `AbortController` integration prevents race conditions
 - **Loading States** — Shimmer placeholders provide smooth loading experience
-- **Text Highlighting** — Search terms are highlighted in results
+- **Text Highlighting** — Search terms are highlighted in results (with safe regex escaping)
+- **Error Boundaries** — Graceful error handling with recovery options at global and component level
 - **Responsive UI** — Built with Microsoft Fluent UI components
 
 ## Architecture
@@ -62,6 +63,7 @@ todo-app/
     │   │   ├── configs.ts     # API endpoints
     │   │   └── types.ts       # Request types
     │   ├── components/
+    │   │   ├── ErrorBoundary.tsx      # Error boundary with recovery UI
     │   │   ├── TodoList.tsx          # Todo list with highlighting
     │   │   ├── TodoListContainer.tsx # Data fetching container
     │   │   ├── TodoSearchBox.tsx     # Search input
@@ -196,6 +198,29 @@ class SearchStore {
 - Debounces value changes via MobX reactions
 - Writes debounced value back to URL via `history.replaceState`
 
+## Error Handling
+
+### ErrorBoundary Component
+
+React class component that catches JavaScript errors anywhere in the child component tree.
+
+```tsx
+// Global boundary (catches everything)
+<ErrorBoundary>
+  <App />
+</ErrorBoundary>
+
+// Local boundary (isolates failures)
+<ErrorBoundary>
+  <TodoListContainer />
+</ErrorBoundary>
+
+// With custom fallback
+<ErrorBoundary fallback={<CustomError />}>
+  <ProblematicComponent />
+</ErrorBoundary>
+```
+
 ## Build for Production
 
 ```bash
@@ -215,7 +240,7 @@ cd server && npm start
 - [ ] Create, update, delete todo operations
 - [ ] Pagination support
 - [ ] Optimistic updates
-- [ ] Error boundary components
+- [x] Error boundary components
 - [ ] Unit and integration tests
 - [ ] Docker containerization
 
