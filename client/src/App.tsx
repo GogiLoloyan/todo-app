@@ -1,6 +1,6 @@
-import { observer } from "mobx-react-lite";
 import { Stack, Text } from "@fluentui/react";
 
+import ErrorBoundary from "./components/ErrorBoundary";
 import TodoSearchBox from "./components/TodoSearchBox";
 import TodoListContainer from "./components/TodoListContainer";
 
@@ -12,9 +12,11 @@ const App: React.FC = () => {
     >
       <Text variant="xLarge">Todo App</Text>
       <TodoSearchBox />
-      <TodoListContainer />
+      <ErrorBoundary>
+        <TodoListContainer />
+      </ErrorBoundary>
     </Stack>
   );
 };
 
-export default observer(App);
+export default App;
