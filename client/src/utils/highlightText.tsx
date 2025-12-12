@@ -5,6 +5,10 @@ interface HighlightTextProps {
   highlight: string;
 }
 
+/** Escapes special regex characters to prevent injection */
+const escapeRegex = (str: string): string =>
+  str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 export const HighlightText: React.FC<HighlightTextProps> = ({
   text,
   highlight,
@@ -13,7 +17,7 @@ export const HighlightText: React.FC<HighlightTextProps> = ({
     return <>{text}</>;
   }
 
-  const regex = new RegExp(`(${highlight})`, "gi");
+  const regex = new RegExp(`(${escapeRegex(highlight)})`, "gi");
   const parts = text.split(regex);
 
   return (
@@ -36,3 +40,5 @@ export const HighlightText: React.FC<HighlightTextProps> = ({
     </>
   );
 };
+
+export default HighlightText;

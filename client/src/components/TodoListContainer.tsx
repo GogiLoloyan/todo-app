@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { MessageBar, MessageBarType } from "@fluentui/react";
 
-import { TodoList } from "./TodoList";
-import { LoadingShimmer } from "./LoadingShimmer";
+import TodoList from "./TodoList";
+import LoadingShimmer from "./LoadingShimmer";
 
 import { useQuery } from "../hooks/useQuery";
 import { todoService } from "../api/todoService";
@@ -31,7 +31,9 @@ const TodoListContainer: React.FC = () => {
     return <MessageBar>No todos found.</MessageBar>;
   }
 
-  return <TodoList items={data} searchValue={searchStore.debouncedSearchValue} />;
+  return (
+    <TodoList items={data} searchValue={searchStore.debouncedSearchValue} />
+  );
 };
 
 export default observer(TodoListContainer);

@@ -6,7 +6,7 @@ const shimmerElements = [
   { type: ShimmerElementType.line, width: "10%", height: 16 },
 ];
 
-export const LoadingShimmer: React.FC = () => {
+const LoadingShimmer: React.FC = () => {
   return (
     <div>
       {Array.from({ length: 5 }).map((_, index) => (
@@ -19,3 +19,5 @@ export const LoadingShimmer: React.FC = () => {
     </div>
   );
 };
+
+export default LoadingShimmer;

@@ -26,8 +26,6 @@ export class SearchStore {
       clearSearch: action,
       updateDebouncedValue: action,
     });
-
-    this.initReaction();
   }
 
   private updateURL(value: string) {
